@@ -13,7 +13,7 @@ gitlab_token="<gitlab_token>"
 project_id="<project_id>"
 api_endpoint="<api_endpoint>"
 
-status=$(curl --header "PRIVATE-TOKEN: ${gitlab_token}" "${api_endpoint}/api/v3/projects/${project_id}/builds" 2>/dev/null | jq -r '.[0] | .status')
+status=$(curl --header "PRIVATE-TOKEN: ${gitlab_token}" "${api_endpoint}/api/v3/projects/${project_id}/pipelines" 2>/dev/null | jq -r '.[0] | .status')
 project_name=$(curl --header "PRIVATE-TOKEN: ${gitlab_token}" "${api_endpoint}/api/v3/projects/${project_id}" 2>/dev/null | jq -r '.path_with_namespace')
 
 if [ $status = "success" ] ; then
